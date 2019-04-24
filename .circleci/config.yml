@@ -22,7 +22,6 @@ jobs:
       - run:
           name: test
           command: |
-            npm run lint
             npm run test
             npm run coveralls
             npm run build
