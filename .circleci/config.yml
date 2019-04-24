@@ -22,12 +22,11 @@ jobs:
       - run:
           name: test
           command: |
-            npm run test
             npm run coveralls
-            npm run build
       - run: 
           name: deployment
           command: |
+            npm run build
             if [[ ${CIRCLE_TAG} =~ ^release-.* ]]; then
               npm publish
             fi

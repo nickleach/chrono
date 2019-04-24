@@ -11,3 +11,6 @@ coverage/
 .vscode
 .settings
 
+./chrono.js
+./chrono.map.json
+./chrono.min.js
