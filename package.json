@@ -16,7 +16,7 @@
     "source": "./src",
     "test": "./test"
   },
-  "main": "./src/chrono",
+  "main": "./chrono",
   "devDependencies": {
     "browserify": "^14.3.0",
     "coveralls": "^3.0.2",
@@ -32,6 +32,6 @@
     "coveralls": "npm run test && cat coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "moment": "2.21.0"
+    "moment": "2.24.0"
   }
 }
