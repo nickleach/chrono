@@ -16,7 +16,7 @@
     "source": "./src",
     "test": "./test"
   },
-  "main": "./chrono",
+  "main": "./src/chrono",
   "devDependencies": {
     "browserify": "^14.3.0",
     "coveralls": "^3.0.2",
