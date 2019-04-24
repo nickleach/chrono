@@ -1,0 +1,43 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: "circleci/node:6.14.4-browsers"
+    environment:
+      COVERALLS_REPO_TOKEN: "3CLSMycTbvVw0FSBmkSHb6AAaX1Axqd8z"
+    steps:
+      - checkout
+      - run:
+          name: pre
+          command: |
+            bash -c "$(curl -fsSL https://gist.githubusercontent.com/domderen/9675a9c887661d4598be23bb8608f27b/raw/518124a222b8ab03ffb6066145e9cc3bc4c94454/npmrc_artifactory.sh)" /bin/bash ${CIRCLECI_ARTIFACTORY_USER}:${CIRCLECI_ARTIFACTORY_PASSWORD}
+      - restore_cache:
+          key: dependency-cache-{{ arch }}-{{ checksum "package.json" }}-v1
+      - run: npm install
+      - save_cache:
+          key: dependency-cache-{{ arch }}-{{ checksum "package.json" }}-v1
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: |
+            npm run lint
+            npm run test
+            npm run coveralls
+            npm run build
+      - run: 
+          name: deployment
+          command: |
+            if [[ ${CIRCLE_TAG} =~ ^release-.* ]]; then
+              npm publish
+            fi
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only:
+                - /^release-.*/

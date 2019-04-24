@@ -1,5 +1,5 @@
 {
-  "name": "chrono-node",
+  "name": "@import/chrono-node",
   "description": "A natural language date parser in Javascript",
   "homepage": "http://github.com/berryboy/chrono",
   "repository": {
@@ -26,12 +26,12 @@
   "scripts": {
     "make-bundle": "browserify src/chrono.js -d --s chrono -o chrono.js",
     "make-minify": "browserify src/chrono.js -d --s chrono -d -p [minifyify --output chrono.map.json] -o chrono.min.js",
-    "make": "npm run make-bundle & npm run make-minify",
+    "build": "npm run make-bundle & npm run make-minify",
     "watch": "jest --watch",
     "test": "jest --coverage",
     "coveralls": "npm run test && cat coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "moment": "2.21.0"
+    "moment": "2.24.0"
   }
 }
