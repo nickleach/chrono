@@ -22,7 +22,7 @@ jobs:
       - run:
           name: test
           command: |
-            npm run coveralls
+            npm run test
       - run: 
           name: deployment
           command: |
